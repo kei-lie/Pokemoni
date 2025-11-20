@@ -9,12 +9,13 @@ public class ElektriskaisP extends Pokemons {
 	
 	@Override
 	public int uzbrukt() {
-		// elektriskais pokemons reizem sit critical atk
-		if (Math.random() < 0.25) {
+		int sitiens = (int)(Math.random() * 10);
+		
+		// Ūdens pokemons reizem veic kritiskus sitienus
+		if (sitiens == 1 || sitiens == 2)
 			return uzbrukumaSpeks + 15;
-			
-		}
-		return uzbrukumaSpeks;
+		
+		else return uzbrukumaSpeks;
 	}
 
 }

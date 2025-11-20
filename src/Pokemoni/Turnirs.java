@@ -7,10 +7,17 @@ public class Turnirs {
 	public static void cinities(Pokemons tavs, Inventars inv) {
 		// random pretinieks
 		Pokemons pretinieks;
-		if (Math.random() < 0.5)
+		//Pasaka, kāds būs pretinieks
+		int elements = (int)(Math.random()*5);
+		
+		if (elements <=1)
 			pretinieks = new ElektriskaisP("Pikachu");
-		else
+		else if (elements >1 && elements <3)
 			pretinieks = new UdensP("Squirtle");
+		else if (elements < 4)
+			pretinieks = new UgunsP("Charmander");
+		else
+			pretinieks = new AuguP("Turtwig");
 		
 		JOptionPane.showMessageDialog(null, "Cīņa sākas.\nPretinieks:\n" + pretinieks.getInfo());
 		//cikls

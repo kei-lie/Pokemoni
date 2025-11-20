@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 
 public class Turnirs {
 
-	public static void cinities(Pokemons tavs, Inventars inv) {
+	//Cīņa pret savvaļas pokemonu
+	public static void SavCinities(Pokemons tavs, Inventars inv) {
 		// random pretinieks
 		Pokemons pretinieks;
 		//Pasaka, kāds būs pretinieks
@@ -83,4 +84,89 @@ public class Turnirs {
 		else
 			JOptionPane.showMessageDialog(null, "Tu zaudēji.. :(");
 	}
+	
+	//Cīņa pret citu pokemonu treneri
+		public static void TrenCinities(Pokemons tavs, Inventars inv) {
+			//izvēlas kādu pokemonu izmantos pretiniektreneris
+			Pokemons pretinieks;
+			//Pasaka, kāds būs pretinieks
+			int elements = (int)(Math.random()*5);
+			
+			if (elements <= 1)
+				pretinieks = new ElektriskaisP("Pikachu");
+			else if (elements == 2)
+				pretinieks = new UdensP("Squirtle");
+			else if (elements == 3)
+				pretinieks = new UgunsP("Charmander");
+			else
+				pretinieks = new AuguP("Turtwig");
+			
+			JOptionPane.showMessageDialog(null, "Cīņa sākas.\nPretinieka treneris izsūta " + pretinieks.getInfo());
+			//cikls
+			while (tavs.irDzivs() && pretinieks.irDzivs()) {
+				String[] darbibas = {
+						"Uzbrukt",
+						"Izmantot mikstūru",
+						"Atvērt inventāru",
+						"Bēgt"
+				};
+				
+				int izvele = JOptionPane.showOptionDialog(null,
+						"Tava kārta!\n" + tavs.getInfo(), "Cīņa",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+						null, darbibas, darbibas[0]);
+				
+				// uzbrukums
+				 if (izvele == 0) {
+					 int dmg = tavs.uzbrukt();
+					 pretinieks.sanemtDMG(dmg);
+					 JOptionPane.showMessageDialog(null, tavs.nosaukums + " uzbrūk un dara " + dmg + " dmg.\n" + "Pretinieku pokemona HP: " + pretinieks.veseliba);
+				 }
+				 
+				 // miksturas/HP
+				 else if (izvele == 1) {
+					 String[] miksturuOpcijas = {
+							 "Mikstūra (+20 HP)",
+							 "Lielā mikstūra (+50 HP)",
+							 "Atcelt"
+					 };
+					 
+					 int m = JOptionPane.showOptionDialog(null,"Izvēlies mikstūru: ", "Mikstūras", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, miksturuOpcijas, miksturuOpcijas[0]);
+					 if (m == 0) inv.izmantotMiksturu(tavs);
+					 else if (m == 1) inv.izmantotLieloMiksturu(tavs);
+							 
+				 }
+				 
+				 // inventars
+				 else if (izvele == 2) {
+					 inv.paraditInventaru();
+					 continue;
+				 }
+				 
+				 // begt
+				 else if (izvele == 3) {
+					 JOptionPane.showMessageDialog(null, "Tu nevari bēgt no cīņas pret citu treneri.");
+				 }
+				 
+				 // pretinieks uzbruuk ja ir hp
+				 if (pretinieks.irDzivs()) {
+					 int dmg2 = pretinieks.uzbrukt();
+					 tavs.sanemtDMG(dmg2);
+					 
+					 JOptionPane.showMessageDialog(null, pretinieks.nosaukums + " uzbrūk un dara " + dmg2 + " dmg.\n" + "Tavs HP: " + tavs.veseliba);
+				 }
+						
+			}
+			
+			// cinas rezultats
+			if (tavs.irDzivs()) {
+				JOptionPane.showMessageDialog(null, "Tu uzvarēji! Pretinieks samaksāja 100 pokemondolārus. :)");
+				inv.pokedolari += 100;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Tu zaudēji.. Tu atdevi 100 pokemondolārus pretiniekam. :(");
+				inv.pokedolari -= 100;
+			}
+	}
+	
 }

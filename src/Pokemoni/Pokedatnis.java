@@ -19,6 +19,7 @@ public class Pokedatnis {
 					"Izveidot pokemonu",
 					"Aplūkot pokemonus",
 					"Pokemonu cīņa",
+					"Apskatīt inventāru",
 					"Dziedēt",
 					"Veikals",
 					"Iziet"
@@ -29,15 +30,16 @@ public class Pokedatnis {
 			if (iz == 0) izveidotPokemonu();
 			else if (iz == 1) paraditPokemonus();
 			else if (iz == 2) uzsaktCinu();
-			else if (iz == 3) dziedet();
-			else if (iz == 4) Veikals.atvertVeikalu(inventars);
+			else if (iz == 3) inventars.paraditInventaru();
+			else if (iz == 4) dziedet();
+			else if (iz == 5) Veikals.atvertVeikalu(inventars);
 			else break;
 		}
 	}
 	
 	static void izveidotPokemonu() {
 		String[] tipi = {"Elektriskais", "Ūdens", "Uguns", "Augu"};
-		int tips = JOptionPane.showOptionDialog(null,"Izvēlies sākuma pokemonu: ", "Tips", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, tipi, tipi[0]);
+		int tips = JOptionPane.showOptionDialog(null,"Izvēlies pokemonu: ", "Tips", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, tipi, tipi[0]);
 		
 		Pokemons p;
 		if (tips == 0)
@@ -80,7 +82,7 @@ public class Pokedatnis {
 					
 		}
 	}
-	
+		//Uzsāk cīņu ar nejaušu pokemonu
 	static void uzsaktCinu() {
 		if (pokemonuSaraksts.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Vispirms izveido Pokemonu.");
@@ -92,12 +94,15 @@ public class Pokedatnis {
 			vardi[i] = pokemonuSaraksts.get(i).nosaukums;
 			
 		}
-		
+		String[] pretinieki = {"Savvaļas pokemoni", "Cits treneris"};
+		int pret = JOptionPane.showOptionDialog(null, "Pret ko cīnīsies?", "Cīņa", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null , pretinieki , pretinieki[0]);
 		int izv = JOptionPane.showOptionDialog(null, "Izvēlies savu Pokémonu:", "Cīņa", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null , vardi , vardi[0]);
 		if (izv < 0) return;
-		Turnirs.cinities(pokemonuSaraksts.get(izv), inventars);
+		if(pret == 0) Turnirs.SavCinities(pokemonuSaraksts.get(izv), inventars);
+		else if(pret == 1) Turnirs.TrenCinities(pokemonuSaraksts.get(izv), inventars);
 	}
 	
+		//Iespēja dziedināt pokemonu ārpus cīņas, lai varētu viņu izmantot arī turpmākās cīņās jau iepriekšējo zaudēji
 	static void dziedet() {
 		if (pokemonuSaraksts.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Vispirms izveido Pokemonu.");
@@ -111,7 +116,7 @@ public class Pokedatnis {
 		}
 		int izv = JOptionPane.showOptionDialog(null, "Izvēlies kuru dziedēt:", "Palīdzība", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null , vardi , vardi[0]);
 		
-		if(izv <5) {
+		if(izv < 5) {
 			String[] miksturuOpcijas = {
 					 "Mikstūra (+20 HP)",
 					 "Lielā mikstūra (+50 HP)",

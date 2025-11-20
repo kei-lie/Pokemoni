@@ -6,6 +6,7 @@ public class Inventars {
 
 	public int miksturas = 0;
 	public int lielasMiksturas = 0;
+	public int pokedolari = 0;
 	
 	public void izmantotMiksturu(Pokemons p) {
 		if (miksturas> 0) {
@@ -27,10 +28,12 @@ public class Inventars {
 	}
 	
 	
+	
 	public void paraditInventaru() {
 		JOptionPane.showMessageDialog(null,
 				"Inventārs:\n" +
-				"Mikstūras: " + miksturas + "\n" +
-				"Lielās mikstūras: " + lielasMiksturas);
+				"Mikstūras: " + miksturas +
+				"\nLielās mikstūras: " + lielasMiksturas+
+				"\nPokedolāri(PD): " + pokedolari);
 	}
 }

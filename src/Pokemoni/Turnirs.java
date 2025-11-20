@@ -164,8 +164,10 @@ public class Turnirs {
 				inv.pokedolari += 100;
 			}
 			else {
+				if(inv.pokedolari>=100) {
 				JOptionPane.showMessageDialog(null, "Tu zaudēji.. Tu atdevi 100 pokemondolārus pretiniekam. :(");
 				inv.pokedolari -= 100;
+				}else JOptionPane.showMessageDialog(null, "Tu zaudēji.. Tev nav naudas un tu tagad esi parādā. Apsveicam! :(");
 			}
 	}
 	

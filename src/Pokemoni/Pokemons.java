@@ -16,7 +16,7 @@ public abstract class Pokemons {
 	}
 	
 	public String getInfo() {
-		return "Nosaukums: " + nosaukums +
+		return nosaukums +
 				"\nLīmenis: " + limenis +
 				"\nVeselība: " + veseliba + "/" + maxVeseliba +
 				"\nUzbrukums: " + uzbrukumaSpeks;

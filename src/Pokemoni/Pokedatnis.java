@@ -16,9 +16,8 @@ public class Pokedatnis {
 	public static void main(String[] args) {
 		while (true) {
 			String[] opcijas = {
-					"Izveidot Pokemonu",
+					"Izveidot pokemonu",
 					"Aplūkot pokemonus",
-					"Attīstīt pokemonu",
 					"Pokemonu cīņa",
 					"Dziedēt",
 					"Veikals",
@@ -30,27 +29,25 @@ public class Pokedatnis {
 			if (iz == 0) izveidotPokemonu();
 			else if (iz == 1) paraditPokemonus();
 			else if (iz == 2) uzsaktCinu();
-			else if (iz == 3) attistit();
-			else if (iz == 4) dziedet();
-			else if (iz == 5) Veikals.atvertVeikalu(inventars);
+			else if (iz == 3) dziedet();
+			else if (iz == 4) Veikals.atvertVeikalu(inventars);
 			else break;
 		}
 	}
 	
 	static void izveidotPokemonu() {
-		String vards = JOptionPane.showInputDialog("Ievadi pokemona vārdu:");
 		String[] tipi = {"Elektriskais", "Ūdens", "Uguns", "Augu"};
-		int tips = JOptionPane.showOptionDialog(null,"Izvēlies tipu:", "Tips", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, tipi, tipi[0]);
+		int tips = JOptionPane.showOptionDialog(null,"Izvēlies sākuma pokemonu: ", "Tips", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, tipi, tipi[0]);
 		
 		Pokemons p;
 		if (tips == 0)
-			p = new ElektriskaisP(vards);
+			p = new ElektriskaisP(tipi[tips]);
 		else if (tips == 1)
-			p = new UdensP(vards);
+			p = new UdensP(tipi[tips]);
 		else if (tips == 2)
-			p = new UgunsP(vards);
+			p = new UgunsP(tipi[tips]);
 		else 
-			p = new AuguP(vards);
+			p = new AuguP(tipi[tips]);
 		
 		pokemonuSaraksts.add(p);
 		JOptionPane.showMessageDialog(null, "Pokemons izveidots.\n" + p.getInfo());
@@ -114,7 +111,7 @@ public class Pokedatnis {
 		}
 		int izv = JOptionPane.showOptionDialog(null, "Izvēlies kuru dziedēt:", "Palīdzība", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null , vardi , vardi[0]);
 		
-		if(izv == 0 || izv == 1) {
+		if(izv <5) {
 			String[] miksturuOpcijas = {
 					 "Mikstūra (+20 HP)",
 					 "Lielā mikstūra (+50 HP)",
@@ -132,18 +129,4 @@ public class Pokedatnis {
 		 
 	}
 	
-	 void attistit() {
-		if (pokemonuSaraksts.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Vispirms izveido Pokemonu.");
-			return;
-		}
-		
-		String[] vardi = new String[pokemonuSaraksts.size()];
-		for (int i = 0; i < pokemonuSaraksts.size(); i++) {
-			vardi[i] = pokemonuSaraksts.get(i).nosaukums;
-			
-		}
-		int izv = JOptionPane.showOptionDialog(null, "Izvēlies kuru attīstīt:", "Attīstīšana", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null , vardi , vardi[0]);
-		Pokemons.attistit(pokemonuSaraksts.get(izv));
-	}
 }

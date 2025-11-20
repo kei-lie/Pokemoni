@@ -3,7 +3,7 @@ package Pokemoni;
 public class ElektriskaisP extends Pokemons {
 	
 	public ElektriskaisP(String nosaukums) {
-		super(nosaukums, 80, 20);
+		super("Pikachu", 80, 20);
 		
 	}
 	

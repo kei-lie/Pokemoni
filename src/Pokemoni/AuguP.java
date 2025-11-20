@@ -2,7 +2,7 @@ package Pokemoni;
 
 public class AuguP extends Pokemons{
 	public AuguP(String nosaukums) {
-		super(nosaukums, 60, 35);
+		super("Turtwig", 60, 35);
 	}
 	
 	@Override

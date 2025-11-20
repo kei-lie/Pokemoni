@@ -10,11 +10,11 @@ public class Turnirs {
 		//Pasaka, kāds būs pretinieks
 		int elements = (int)(Math.random()*5);
 		
-		if (elements <=1)
+		if (elements <= 1)
 			pretinieks = new ElektriskaisP("Pikachu");
-		else if (elements >1 && elements <3)
+		else if (elements == 2)
 			pretinieks = new UdensP("Squirtle");
-		else if (elements < 4)
+		else if (elements == 3)
 			pretinieks = new UgunsP("Charmander");
 		else
 			pretinieks = new AuguP("Turtwig");

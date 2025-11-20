@@ -2,7 +2,7 @@ package Pokemoni;
 
 public class UdensP extends Pokemons {
 	public UdensP(String nosaukums) {
-		super(nosaukums, 100, 15);
+		super("Squirtle", 100, 15);
 	}
 	
 	@Override

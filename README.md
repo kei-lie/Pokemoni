@@ -4,7 +4,7 @@
 
 ### Galvenā klase
 - [x] Izveidot klasi "**Pokedatnis**"
-- [x] Izstrādāt ar JOptionPane dialogiem & JFrame logiem, tiek nodrošināta ievaddatu validācija.
+- [x] Izstrādāt ar JOptionPane dialogiem, tiek nodrošināta ievaddatu validācija.
 - [x] Ievadīt iespēju izveidot, dzēst, un apskatīt jaunus klašu objektus, kā arī izsaukt metodes.
 ### Virsklase
 - [x] Izveidot klasi "**Pokemoni**"
